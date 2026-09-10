@@ -1,0 +1,4 @@
+export function buildMapSearchUrl(query: string): string { const params = new URLSearchParams({ api: '1', query }); return `https://www.google.com/maps/search/?${params.toString()}` }
+export function buildMapDirectionsUrl(destination: string, origin?: string): string { const params = new URLSearchParams({ api: '1', destination }); if (origin && origin.trim()) params.set('origin', origin.trim()); return `https://www.google.com/maps/dir/?${params.toString()}` }
+export function buildTransitDirectionsUrl(destination: string, origin?: string): string { const params = new URLSearchParams({ api: '1', destination, travelmode: 'transit' }); if (origin && origin.trim()) params.set('origin', origin.trim()); return `https://www.google.com/maps/dir/?${params.toString()}` }
+export function pickBestLocationQuery(fields: { mapInfo?: string; location?: string; meetingPoint?: string }): string { return (fields.mapInfo || fields.location || fields.meetingPoint || '').trim() }
